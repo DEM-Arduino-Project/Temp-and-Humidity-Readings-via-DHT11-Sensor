@@ -14,32 +14,32 @@
 #define WIFI_DEBUG 0
 
 // FULL SERVER DATA SWITCH
-#define SHOW_SERVER_DATA 1
+#define SHOW_SERVER_DATA 0
 
 // LCD
 #define LCD 0
 
 //DHT 11
 
-#define DHT_DATA 1
+#define DHT_DATA 0
 
 
 #define DHTPIN 2     // Pinul digital pe care este conectat senzorul
 #define DHTTYPE DHT11   // Tipul de senzor folosit
 
 // FOR FFT
-#define FFT 1
+#define FFT_is_used 1
 
 #define CHANNEL A0
 
-const uint16_t samples = 64; //This value MUST ALWAYS be a power of 2
+const uint16_t samples = 8; //This value MUST ALWAYS be a power of 2
 const double samplingFrequency = 100; //Hz, must be less than 10000 due to ADC
 
-unsigned int sampling_period_us;
-unsigned long microseconds;
 
 double vReal[samples];
 double vImag[samples];
+
+ArduinoFFT<double> FFT = ArduinoFFT<double>(vReal, vImag, samples, samplingFrequency);
 
 
 ArduinoLEDMatrix matrix;
@@ -135,6 +135,27 @@ void loop()
     }
 
     return;
+  }
+
+  if(FFT_is_used){
+    for(int i = 0; i < samples; i++){
+      int sensorRead = analogRead(CHANNEL);
+      vReal[i] = (sensorRead + 0.5) * (5.0 / 1023.0);
+      vImag[i] = 0;
+      Serial.println(vReal[i]);
+    }
+
+
+    FFT.windowing(FFTWindow::Hamming, FFTDirection::Forward);
+    FFT.compute(FFTDirection::Forward);
+    FFT.complexToMagnitude();
+
+    // Find dominant frequency
+    double dominantFrequency = FFT.majorPeak();
+
+    Serial.print("Dominant Frequency: ");
+    Serial.print(dominantFrequency);
+    Serial.println(" Hz");
   }
 
   // show api data
