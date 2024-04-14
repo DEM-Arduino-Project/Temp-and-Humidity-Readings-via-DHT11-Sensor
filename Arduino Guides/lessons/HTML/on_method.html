@@ -1,0 +1,24 @@
+<html>
+    <head>
+        <title>Magic</title>
+        <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+        <script>
+            
+            $(document).ready(function(){
+                    $("h1").on("mouseover mouseout", function(){
+                        $(this).toggleClass("h1-class");
+                    }); 
+            });
+        </script>
+        <style>
+            .h1-class {
+                color: blue;
+            }
+        </style>
+    </head>
+    <body>
+
+            <h1>Move the mouse over the text.</h1>
+
+    </body>
+</html>

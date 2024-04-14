@@ -1,0 +1,65 @@
+<html lang="en">
+    <head>
+        <title>Font Awesome</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.1.0/css/all.css"/>
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.2/css/bootstrap.min.css"/>
+        <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+        <style>
+            .css_on 
+            {
+                color: orange;
+            }
+            .css_off 
+            {
+                color: black;
+            }
+        </style>
+    </head>
+    <body>
+    <div class="container-fluid text-center">
+        <div class="row text-center">
+            <div class="col-sm-12" style="color:red;font-size:7vh">
+                <p>Let's play with a bulb.</p>
+            </div>
+        </div>
+        
+        <div class="row">
+            <div  class="col-sm-12">
+                <i id="id_bulb" class="fas fa-lightbulb css_off" style="font-size:25vh"></i>
+            </div>
+        </div>
+            <br>
+        <div class="row">
+            <div  class="col-sm-12" style="font-size:7vh">
+                <p>Click the button:</p>
+            </div>
+        </div>
+        
+        <div class="row">
+            <div  class="col-sm-12">
+                <input type="button" class="btn btn-primary" id="id_button" value="Off"  style="font-size:7vh">
+            </div>
+        </div>
+    </div>
+    
+    <script>
+        $(document).ready(function(){
+            $("#id_button").click(function(){
+                var current_state = $("#id_bulb").hasClass("css_off");
+                
+                if(current_state == true)
+                {
+                    $("#id_button").val("On");
+                    $("#id_bulb").removeClass("css_off").addClass("css_on");
+                }
+                else
+                {
+                    $("#id_button").val("Off");
+                    $("#id_bulb").removeClass("css_on").addClass("css_off");
+                }
+            });
+        });
+    </script>
+    </body>
+</html>

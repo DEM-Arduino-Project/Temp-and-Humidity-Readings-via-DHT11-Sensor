@@ -1,0 +1,51 @@
+<html lang="en">
+    <head>
+        <title>Font Awesome</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.1.0/css/all.css"/>
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.2/css/bootstrap.min.css"/>
+        <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+    </head>
+    <body>
+    <div class="container-fluid text-center">
+        <div class="row text-center">
+            <div class="col-sm-12" style="color:red;font-size:7vh">
+                <p>Let's play with a bulb.</p>
+            </div>
+        </div>
+        
+        <div class="row">
+            <div  class="col-sm-12">
+                <i id="id_bulb" class="fas fa-lightbulb" style="font-size:25vh"></i>
+            </div>
+        </div>
+            <br>
+        <div class="row">
+            <div  class="col-sm-12" style="font-size:7vh">
+                <p>Click the button:</p>
+            </div>
+        </div>
+        
+        <div class="row">
+            <div  class="col-sm-12">
+                <input type="button" class="btn btn-primary" id="id_button" value="Off"  style="font-size:7vh">
+            </div>
+        </div>
+    </div>
+    
+    <script>
+        clicked = true;
+        $(document).ready(function(){
+            $("#id_button").click(function(){
+                var color = clicked ? 'orange' : 'black';
+                
+                var button = clicked ? 'On' : 'Off';
+                
+                $("#id_bulb").css('color', color);
+                $("#id_button").val(button);
+                clicked = !clicked;
+            });
+        });
+    </script>
+    </body>
+</html>
