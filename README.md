@@ -3,10 +3,10 @@
 
 ## Dependencies
 
-DHT
+- DHT
 
-LiquidCrystal_I2C
+- LiquidCrystal_I2C
 
-ArduinoGraphics
+- ArduinoGraphics
 
-Arduino_LED_Matrix -> Only for Arduino Uno R4
+- Arduino_LED_Matrix -> Only for Arduino Uno R4
